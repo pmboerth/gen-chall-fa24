@@ -2,10 +2,10 @@
 const apiURL = "https://movie-matcher-nqsql.ondigitalocean.app/";
 
 // define the OMDb API URL
-const omdbURL = 'http://www.omdbapi.com/?i=';
+const omdbURL = "http://www.omdbapi.com/?i=";
 
 // define my OMDb authorization key
-const authKey = 'f68850a0';
+const authKey = "f68850a0";
 
 // information object to store token, movies, and people
 const information = {
@@ -42,7 +42,6 @@ async function getToken() {
 async function getPrompt() {
   const response = await fetch(apiURL + information.token + "/prompt", {
     method: "GET",
-    headers: { "Content-Type": "application/json" },
   });
 
   const data = await response.json();
@@ -52,53 +51,56 @@ async function getPrompt() {
 
 // get individual movie data and put into array
 async function getMovieData() {
-    for (let i = 0; i < information.movies.length; i++) {
-        const response = await fetch(omdbURL + information.movies[i] + "&apikey=" + authKey, {
+  for (let i = 0; i < information.movies.length; i++) {
+    const response = await fetch(
+      omdbURL + information.movies[i] + "&apikey=" + authKey,
+      {
         method: "GET",
         headers: { "Content-Type": "application/json" },
-        });
+      }
+    );
 
-        const movieInfo = await response.json();
-        information.movies[i] = movieInfo;
-    }
+    const movieInfo = await response.json();
+    information.movies[i] = movieInfo;
+  }
 }
 
 // send optimal movie ranking back to server
 async function sendMovieList() {
-    const response = await fetch(apiURL + information.token + "/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify([
-          "tt0058150",
-          "tt2293640",
-          "tt1285016",
-          "tt2278388",
-          "tt0112384",
-          "tt22022452",
-          "tt0062622",
-          "tt1490017",
-          "tt2582802",
-          "tt0432283"
-        ])
+  const response = await fetch(apiURL + information.token + "/submit", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify([
+      "tt0058150",
+      "tt2293640",
+      "tt1285016",
+      "tt2278388",
+      "tt0112384",
+      "tt22022452",
+      "tt0062622",
+      "tt1490017",
+      "tt2582802",
+      "tt0432283",
+    ]),
   });
   let score = await response.text();
   console.log(score);
 }
 
-// main function that registers, gets token, prompt, movie data, 
+// main function that registers, gets token, prompt, movie data,
 // determines optimal ranking, and sends to server
 async function main() {
-
   // await register();
-  
+
   await getToken();
-  
+
   await getPrompt();
-  
+  console.log(information.people[0].preferences.favoriteActors.length)
+
   await getMovieData();
 
   // function to determine optimal movie ranking
-  
+
   // await sendMovieList();
 }
 
