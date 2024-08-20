@@ -93,15 +93,24 @@ function getRottenTomatoesScore(ratings) {
   return rtRating ? parseInt(rtRating.Value.replace('%', ''), 10) : 0;
 }
 
-
+const ranking = [
+  "tt0058150",
+  "tt2293640",
+  "tt1285016",
+  "tt2278388",
+  "tt0112384",
+  "tt22022452",
+  "tt0062622",
+  "tt1490017",
+  "tt2582802",
+  "tt0432283"
+]
 
 // create function to send movie list back to server
 async function sendMovieList() {
     const list = await fetch(apiURL + information.token + "/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            // MOVIE ARRAY LIST
-    }),
+        body: ranking
   });
 }
