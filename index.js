@@ -7,6 +7,12 @@ const omdbURL = 'http://www.omdbapi.com/?i=';
 // define my OMDb authorization key
 const authKey = 'f68850a0';
 
+// information object to store token, movies, and people
+const information = {
+  token: "",
+  movies: [],
+  people: [],
+};
 
 // register with Generate server
 async function register() {
@@ -23,16 +29,7 @@ async function register() {
   console.log(data);
 }
 
-// register();
-
-// information object to store token, movies, and people
-const information = {
-  token: "",
-  movies: [],
-  people: [],
-};
-
-// get token
+// get unique token
 async function getToken() {
   const response = await fetch(
     apiURL + "token?email=boerth.p%40northeastern.edu"
@@ -41,7 +38,7 @@ async function getToken() {
   information.token = await response.text();
 }
 
-// get prompt
+// get prompt and parse data into information object
 async function getPrompt() {
   const response = await fetch(apiURL + information.token + "/prompt", {
     method: "GET",
@@ -53,7 +50,7 @@ async function getPrompt() {
   information.people = data.people;
 }
 
-// get movie data and put into array
+// get individual movie data and put into array
 async function getMovieData() {
     for (let i = 0; i < information.movies.length; i++) {
         const response = await fetch(omdbURL + information.movies[i] + "&apikey=" + authKey, {
@@ -66,18 +63,33 @@ async function getMovieData() {
     }
 }
 
-// create function to send movie list back to server
+// send optimal movie ranking back to server
 async function sendMovieList() {
     const response = await fetch(apiURL + information.token + "/submit", {
         method: "POST",
-        body: ranking
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify([
+          "tt0058150",
+          "tt2293640",
+          "tt1285016",
+          "tt2278388",
+          "tt0112384",
+          "tt22022452",
+          "tt0062622",
+          "tt1490017",
+          "tt2582802",
+          "tt0432283"
+        ])
   });
-  
-  console.log(response);
+  let score = await response.text();
+  console.log(score);
 }
 
-// main function that gets token, prompt, movie data, determines the optimal ranking, and sends to server
+// main function that registers, gets token, prompt, movie data, 
+// determines optimal ranking, and sends to server
 async function main() {
+
+  // await register();
   
   await getToken();
   
@@ -87,7 +99,7 @@ async function main() {
 
   // function to determine optimal movie ranking
   
-  await sendMovieList();
+  // await sendMovieList();
 }
 
 main();
