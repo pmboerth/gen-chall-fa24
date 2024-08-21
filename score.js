@@ -1,19 +1,20 @@
-import { information} from "./index.js"
+// import information object
+import { information } from "./index.js";
 
-// utility function to convert runtime to minutes (72h3m0.5s)
+// utility function to convert runtime in the form (72h3m0.5s) to minutes
 function convertRuntimeToMinutes(runtime) {
   let minutes = 0;
 
-  // Regular expression to match the runtime string
+  // regular expression to match the runtime string
   const hourMatch = runtime.match(/(\d+)h/);
   const minuteMatch = runtime.match(/(\d+)m/);
 
-  // Add hours to minutes if present
+  // add hours to minutes if present
   if (hourMatch) {
     minutes += parseInt(hourMatch[1], 10) * 60;
   }
 
-  // Add remaining minutes if present
+  // add remaining minutes if present
   if (minuteMatch) {
     minutes += parseInt(minuteMatch[1], 10);
   }
@@ -34,27 +35,28 @@ function calculateMovieScore(movie, preferences) {
   // initialize score to 0 to start
   let score = 0;
 
-  // Year preferences
+  // after year references
   if (preferences["afterYear(inclusive)"]) {
     if (parseInt(movie.Year) >= preferences["afterYear(inclusive)"].value) {
       score += preferences["afterYear(inclusive)"].weight;
     }
   }
 
+  // before year preference
   if (preferences["beforeYear(exclusive)"]) {
     if (parseInt(movie.Year) < preferences["beforeYear(exclusive)"].value) {
       score += preferences["beforeYear(exclusive)"].weight;
     }
   }
 
-  // Age rating preference
+  // age rating preference
   if (preferences["maximumAgeRating(inclusive)"]) {
     if (movie.Rated <= preferences["maximumAgeRating(inclusive)"].value) {
       score += preferences["maximumAgeRating(inclusive)"].weight;
     }
   }
 
-  // Runtime preference
+  // runtime preference
   if (preferences["shorterThan(exclusive)"]) {
     const movieRuntime = convertRuntimeToMinutes(movie.Runtime);
     const preferenceRuntime = convertRuntimeToMinutes(
@@ -65,7 +67,7 @@ function calculateMovieScore(movie, preferences) {
     }
   }
 
-  // Genre preference
+  // genre preference
   if (preferences.favoriteGenre) {
     const genreList = movie.Genre.split(", ");
     for (let i = 0; i < genreList.length; i++) {
@@ -75,14 +77,14 @@ function calculateMovieScore(movie, preferences) {
     }
   }
 
-  // Director preference
+  // director preference
   if (preferences.leastFavoriteDirector) {
     if (movie.Director !== preferences.leastFavoriteDirector.value) {
       score += preferences.leastFavoriteDirector.weight;
     }
   }
 
-  // Actor preference
+  // actor preference
   if (preferences.favoriteActors) {
     let matchingActors = 0;
     const actors = movie.Actors.split(", ");
@@ -97,7 +99,7 @@ function calculateMovieScore(movie, preferences) {
     score += matchingActors * preferences.favoriteActors.weight;
   }
 
-  // Plot element preference
+  // plot element preference
   if (preferences.favoritePlotElements) {
     const plotElements = preferences.favoritePlotElements.value;
     for (let i = 0; i < plotElements.length; i++) {
@@ -109,7 +111,7 @@ function calculateMovieScore(movie, preferences) {
     }
   }
 
-  // Rotten Tomatoes score preference
+  // rotten Tomatoes score preference
   if (preferences.minimumRottenTomatoesScore) {
     const rtScore = getRottenTomatoesScore(movie.Ratings);
     if (rtScore >= preferences.minimumRottenTomatoesScore.value) {
@@ -133,34 +135,36 @@ function rankMoviesForPerson(movies, person) {
 
 // function to determine final optimal ranking
 function determineOptimalRanking(information) {
-  // create array of rankings for each person
   const individualRankings = information.people.map((person) => ({
     name: person.name,
     rankedMovies: rankMoviesForPerson(information.movies, person),
   }));
 
+  // initialize array to store imdbID for each movie and corresponding score
   const movieScores = {};
 
-  // Calculate scores for each movie based on individual rankings
+  // calculate scores for each movie based on individual rankings
   individualRankings.forEach((ranking) => {
     ranking.rankedMovies.forEach((movie, index) => {
       const movieID = information.movies.find(
         (m) => m.Title === movie.title
       ).imdbID;
+      // if the movie does not have a score, initialize it to 0
       if (!movieScores[movieID]) {
         movieScores[movieID] = 0;
       }
+      // add points to a particular movie based on where it is in the persons ranking
       movieScores[movieID] += information.movies.length - index;
     });
   });
 
-  // Create the optimal ranking as an array of IMDb IDs, sorted by score
+  // create the optimal ranking as an array of IMDb IDs, sorted by score
   const optimalRanking = Object.keys(movieScores)
     .map((imdbID) => ({ imdbID, score: movieScores[imdbID] }))
     .sort((a, b) => b.score - a.score)
-    .map((entry) => entry.imdbID);
+    .map((movie) => movie.imdbID);
 
   return optimalRanking;
 }
 
-export { determineOptimalRanking};
+export { determineOptimalRanking };

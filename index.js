@@ -1,6 +1,7 @@
+// import the method to determine the optimal movie ranking
 import { determineOptimalRanking } from "./score.js";
 
-// define the API URL
+// define the Generate server API URL
 const apiURL = "https://movie-matcher-nqsql.ondigitalocean.app/";
 
 // define the OMDb API URL
@@ -26,7 +27,6 @@ async function register() {
       email: "boerth.p@northeastern.edu",
     }),
   });
-
   const data = await response.json();
   console.log(data);
 }
@@ -36,7 +36,6 @@ async function getToken() {
   const response = await fetch(
     apiURL + "token?email=boerth.p%40northeastern.edu"
   );
-
   information.token = await response.text();
 }
 
@@ -45,7 +44,6 @@ async function getPrompt() {
   const response = await fetch(apiURL + information.token + "/prompt", {
     method: "GET",
   });
-
   const data = await response.json();
   information.movies = data.movies;
   information.people = data.people;
@@ -61,7 +59,6 @@ async function getMovieData() {
         headers: { "Content-Type": "application/json" },
       }
     );
-
     const movieInfo = await response.json();
     information.movies[i] = movieInfo;
   }
@@ -72,30 +69,28 @@ async function sendMovieList() {
   const response = await fetch(apiURL + information.token + "/submit", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(
-      determineOptimalRanking(information)
-    )
+    body: JSON.stringify(determineOptimalRanking(information)),
   });
   let score = await response.text();
   console.log(score);
 }
 
-// main function that registers, gets token, prompt, movie data,
-// determines optimal ranking, and sends to server
+// main function
 async function main() {
   // await register();
 
+  // get the token
   await getToken();
-
+  // get the prompt
   await getPrompt();
-
+  // get movie data
   await getMovieData();
-
-  determineOptimalRanking(information);
-
+  // compute and send the optimal ranking to the Generate server
   sendMovieList();
 }
 
+// run the main function
 main();
 
+// export information object for use in other files
 export { information };
