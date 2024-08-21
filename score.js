@@ -1,7 +1,7 @@
 // utility function to convert runtime to minutes (72h3m0.5s)
 function convertRuntimeToMinutes(runtime) {
   let minutes = 0;
-  
+
   // Regular expression to match the runtime string
   const hourMatch = runtime.match(/(\d+)h/);
   const minuteMatch = runtime.match(/(\d+)m/);
@@ -126,5 +126,37 @@ function rankMoviesForPerson(movies, person) {
   }));
 
   rankedMovies.sort((a, b) => b.score - a.score);
-  console.log(rankedMovies);
+  return rankedMovies;
+}
+
+// function to determine final optimal ranking
+function determineOptimalRanking(information) {
+  // create array of rankings for each person
+  const individualRankings = information.people.map((person) => ({
+    name: person.name,
+    rankedMovies: rankMoviesForPerson(information.movies, person),
+  }));
+
+  const movieScores = {};
+
+  // Calculate scores for each movie based on individual rankings
+  individualRankings.forEach((ranking) => {
+    ranking.rankedMovies.forEach((movie, index) => {
+      const movieID = information.movies.find(
+        (m) => m.Title === movie.title
+      ).imdbID;
+      if (!movieScores[movieID]) {
+        movieScores[movieID] = 0;
+      }
+      movieScores[movieID] += information.movies.length - index;
+    });
+  });
+
+  // Create the optimal ranking as an array of IMDb IDs, sorted by score
+  const optimalRanking = Object.keys(movieScores)
+    .map((imdbID) => ({ imdbID, score: movieScores[imdbID] }))
+    .sort((a, b) => b.score - a.score)
+    .map((entry) => entry.imdbID);
+
+  return optimalRanking;
 }
