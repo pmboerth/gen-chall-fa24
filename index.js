@@ -95,11 +95,12 @@ async function main() {
   await getToken();
 
   await getPrompt();
-  console.log(information.people[0].preferences.favoriteActors.length)
+  // console.log(information.people[0].preferences.favoriteActors.value.length);
 
   await getMovieData();
 
   // function to determine optimal movie ranking
+  await rankMoviesForPerson(information.movies, information.people[0]);
 
   // await sendMovieList();
 }

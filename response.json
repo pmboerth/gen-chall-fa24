@@ -1,0 +1,621 @@
+{
+    "movies": [
+        "tt0058150",
+        "tt2293640",
+        "tt1285016",
+        "tt2278388",
+        "tt0112384",
+        "tt22022452",
+        "tt0062622",
+        "tt1490017",
+        "tt2582802",
+        "tt0432283"
+    ],
+    "people": [
+        {
+            "name": "Bilbo",
+            "preferences": {
+                "afterYear(inclusive)": {
+                    "value": 1902,
+                    "weight": 23
+                },
+                "beforeYear(exclusive)": {
+                    "value": 1945,
+                    "weight": 16
+                },
+                "leastFavoriteDirector": {
+                    "value": "Ridley Scott",
+                    "weight": 28
+                },
+                "favoriteActors": {
+                    "value": [
+                        "Jack Nicholson"
+                    ],
+                    "weight": 28
+                }
+            }
+        },
+        {
+            "name": "Marty",
+            "preferences": {
+                "shorterThan(exclusive)": {
+                    "value": "1h44m0s",
+                    "weight": 17
+                },
+                "favoriteGenre": {
+                    "value": "Romance",
+                    "weight": 12
+                },
+                "favoritePlotElements": {
+                    "value": [
+                        "quest"
+                    ],
+                    "weight": 30
+                },
+                "minimumRottenTomatoesScore(inclusive)": {
+                    "value": 81,
+                    "weight": 16
+                }
+            }
+        },
+        {
+            "name": "Gandalf",
+            "preferences": {
+                "shorterThan(exclusive)": {
+                    "value": "2h23m0s",
+                    "weight": 10
+                },
+                "minimumRottenTomatoesScore(inclusive)": {
+                    "value": 87,
+                    "weight": 33
+                }
+            }
+        },
+        {
+            "name": "Gandalf",
+            "preferences": {
+                "afterYear(inclusive)": {
+                    "value": 1976,
+                    "weight": 11
+                },
+                "leastFavoriteDirector": {
+                    "value": "Francis Ford Coppola",
+                    "weight": 13
+                },
+                "favoritePlotElements": {
+                    "value": [
+                        "sacrifice",
+                        "tragedy"
+                    ],
+                    "weight": 34
+                }
+            }
+        },
+        {
+            "name": "Han",
+            "preferences": {
+                "afterYear(inclusive)": {
+                    "value": 1930,
+                    "weight": 11
+                },
+                "beforeYear(exclusive)": {
+                    "value": 1947,
+                    "weight": 7
+                },
+                "maximumAgeRating(inclusive)": {
+                    "value": "PG",
+                    "weight": 19
+                },
+                "shorterThan(exclusive)": {
+                    "value": "1h6m0s",
+                    "weight": 10
+                }
+            }
+        },
+        {
+            "name": "Sherlock",
+            "preferences": {
+                "afterYear(inclusive)": {
+                    "value": 1955,
+                    "weight": 10
+                },
+                "beforeYear(exclusive)": {
+                    "value": 1956,
+                    "weight": 31
+                },
+                "minimumRottenTomatoesScore(inclusive)": {
+                    "value": 60,
+                    "weight": 5
+                }
+            }
+        },
+        {
+            "name": "Marty",
+            "preferences": {
+                "afterYear(inclusive)": {
+                    "value": 2044,
+                    "weight": 23
+                },
+                "favoriteGenre": {
+                    "value": "Documentary",
+                    "weight": 23
+                },
+                "leastFavoriteDirector": {
+                    "value": "Tim Burton",
+                    "weight": 22
+                },
+                "minimumRottenTomatoesScore(inclusive)": {
+                    "value": 56,
+                    "weight": 34
+                }
+            }
+        },
+        {
+            "name": "Luke",
+            "preferences": {
+                "beforeYear(exclusive)": {
+                    "value": 2008,
+                    "weight": 28
+                },
+                "favoritePlotElements": {
+                    "value": [
+                        "sacrifice",
+                        "journey",
+                        "revenge"
+                    ],
+                    "weight": 33
+                }
+            }
+        },
+        {
+            "name": "Jon",
+            "preferences": {
+                "beforeYear(exclusive)": {
+                    "value": 1922,
+                    "weight": 34
+                },
+                "leastFavoriteDirector": {
+                    "value": "Clint Eastwood",
+                    "weight": 30
+                },
+                "favoriteActors": {
+                    "value": [
+                        "Al Pacino",
+                        "Gary Oldman"
+                    ],
+                    "weight": 21
+                },
+                "favoritePlotElements": {
+                    "value": [
+                        "journey",
+                        "betrayal",
+                        "love"
+                    ],
+                    "weight": 11
+                },
+                "minimumRottenTomatoesScore(inclusive)": {
+                    "value": 29,
+                    "weight": 33
+                }
+            }
+        },
+        {
+            "name": "Han",
+            "preferences": {
+                "shorterThan(exclusive)": {
+                    "value": "2h16m0s",
+                    "weight": 13
+                },
+                "favoriteGenre": {
+                    "value": "Comedy",
+                    "weight": 29
+                },
+                "leastFavoriteDirector": {
+                    "value": "Steven Spielberg",
+                    "weight": 6
+                },
+                "favoriteActors": {
+                    "value": [
+                        "Marlon Brando",
+                        "Robert Downey Jr."
+                    ],
+                    "weight": 6
+                },
+                "minimumRottenTomatoesScore(inclusive)": {
+                    "value": 29,
+                    "weight": 9
+                }
+            }
+        },
+        {
+            "name": "Ellen",
+            "preferences": {
+                "minimumRottenTomatoesScore(inclusive)": {
+                    "value": 29,
+                    "weight": 21
+                }
+            }
+        },
+        {
+            "name": "Tony",
+            "preferences": {
+                "afterYear(inclusive)": {
+                    "value": 2001,
+                    "weight": 15
+                },
+                "beforeYear(exclusive)": {
+                    "value": 1925,
+                    "weight": 29
+                },
+                "favoriteActors": {
+                    "value": [
+                        "Leonardo DiCaprio",
+                        "Heath Ledger"
+                    ],
+                    "weight": 5
+                },
+                "favoritePlotElements": {
+                    "value": [
+                        "tragedy",
+                        "journey"
+                    ],
+                    "weight": 31
+                },
+                "minimumRottenTomatoesScore(inclusive)": {
+                    "value": 58,
+                    "weight": 10
+                }
+            }
+        },
+        {
+            "name": "Forrest",
+            "preferences": {
+                "beforeYear(exclusive)": {
+                    "value": 2025,
+                    "weight": 15
+                },
+                "favoriteActors": {
+                    "value": [
+                        "Morgan Freeman"
+                    ],
+                    "weight": 29
+                },
+                "favoritePlotElements": {
+                    "value": [
+                        "betrayal",
+                        "tragedy",
+                        "quest"
+                    ],
+                    "weight": 22
+                },
+                "minimumRottenTomatoesScore(inclusive)": {
+                    "value": 42,
+                    "weight": 16
+                }
+            }
+        },
+        {
+            "name": "Bilbo",
+            "preferences": {
+                "shorterThan(exclusive)": {
+                    "value": "2h7m0s",
+                    "weight": 29
+                },
+                "favoriteGenre": {
+                    "value": "Film-Noir",
+                    "weight": 8
+                }
+            }
+        },
+        {
+            "name": "Bruce",
+            "preferences": {
+                "beforeYear(exclusive)": {
+                    "value": 1911,
+                    "weight": 5
+                },
+                "favoriteActors": {
+                    "value": [
+                        "Leonardo DiCaprio",
+                        "Robert De Niro",
+                        "Daniel Day-Lewis"
+                    ],
+                    "weight": 5
+                },
+                "favoritePlotElements": {
+                    "value": [
+                        "romance",
+                        "friendship"
+                    ],
+                    "weight": 16
+                }
+            }
+        },
+        {
+            "name": "Jon",
+            "preferences": {
+                "beforeYear(exclusive)": {
+                    "value": 1925,
+                    "weight": 23
+                },
+                "shorterThan(exclusive)": {
+                    "value": "1h1m0s",
+                    "weight": 27
+                },
+                "favoriteGenre": {
+                    "value": "Animation",
+                    "weight": 21
+                },
+                "minimumRottenTomatoesScore(inclusive)": {
+                    "value": 83,
+                    "weight": 20
+                }
+            }
+        },
+        {
+            "name": "Jack",
+            "preferences": {
+                "leastFavoriteDirector": {
+                    "value": "Woody Allen",
+                    "weight": 8
+                },
+                "favoriteActors": {
+                    "value": [
+                        "Denzel Washington"
+                    ],
+                    "weight": 33
+                },
+                "minimumRottenTomatoesScore(inclusive)": {
+                    "value": 64,
+                    "weight": 20
+                }
+            }
+        },
+        {
+            "name": "Arya",
+            "preferences": {
+                "afterYear(inclusive)": {
+                    "value": 1916,
+                    "weight": 5
+                },
+                "beforeYear(exclusive)": {
+                    "value": 1902,
+                    "weight": 17
+                },
+                "shorterThan(exclusive)": {
+                    "value": "1h42m0s",
+                    "weight": 23
+                },
+                "favoriteActors": {
+                    "value": [
+                        "Denzel Washington"
+                    ],
+                    "weight": 29
+                },
+                "favoritePlotElements": {
+                    "value": [
+                        "betrayal",
+                        "sacrifice",
+                        "revenge"
+                    ],
+                    "weight": 30
+                },
+                "minimumRottenTomatoesScore(inclusive)": {
+                    "value": 26,
+                    "weight": 28
+                }
+            }
+        },
+        {
+            "name": "John",
+            "preferences": {
+                "beforeYear(exclusive)": {
+                    "value": 1987,
+                    "weight": 21
+                },
+                "favoriteActors": {
+                    "value": [
+                        "Daniel Day-Lewis"
+                    ],
+                    "weight": 18
+                },
+                "minimumRottenTomatoesScore(inclusive)": {
+                    "value": 23,
+                    "weight": 20
+                }
+            }
+        },
+        {
+            "name": "John",
+            "preferences": {
+                "maximumAgeRating(inclusive)": {
+                    "value": "PG",
+                    "weight": 26
+                },
+                "shorterThan(exclusive)": {
+                    "value": "2h24m0s",
+                    "weight": 10
+                },
+                "favoriteActors": {
+                    "value": [
+                        "Al Pacino",
+                        "Robert De Niro",
+                        "Johnny Depp"
+                    ],
+                    "weight": 12
+                }
+            }
+        },
+        {
+            "name": "James",
+            "preferences": {
+                "favoriteGenre": {
+                    "value": "Action",
+                    "weight": 19
+                }
+            }
+        },
+        {
+            "name": "Indiana",
+            "preferences": {
+                "maximumAgeRating(inclusive)": {
+                    "value": "G",
+                    "weight": 28
+                },
+                "leastFavoriteDirector": {
+                    "value": "Clint Eastwood",
+                    "weight": 26
+                }
+            }
+        },
+        {
+            "name": "Homer",
+            "preferences": {
+                "maximumAgeRating(inclusive)": {
+                    "value": "PG",
+                    "weight": 9
+                },
+                "favoriteGenre": {
+                    "value": "Comedy",
+                    "weight": 21
+                },
+                "leastFavoriteDirector": {
+                    "value": "Ridley Scott",
+                    "weight": 14
+                },
+                "minimumRottenTomatoesScore(inclusive)": {
+                    "value": 90,
+                    "weight": 34
+                }
+            }
+        },
+        {
+            "name": "Sherlock",
+            "preferences": {
+                "afterYear(inclusive)": {
+                    "value": 1914,
+                    "weight": 11
+                },
+                "favoriteGenre": {
+                    "value": "Fantasy",
+                    "weight": 6
+                },
+                "leastFavoriteDirector": {
+                    "value": "Woody Allen",
+                    "weight": 26
+                }
+            }
+        },
+        {
+            "name": "Daenerys",
+            "preferences": {
+                "beforeYear(exclusive)": {
+                    "value": 2046,
+                    "weight": 12
+                },
+                "shorterThan(exclusive)": {
+                    "value": "2h59m0s",
+                    "weight": 17
+                }
+            }
+        },
+        {
+            "name": "Jon",
+            "preferences": {
+                "beforeYear(exclusive)": {
+                    "value": 1960,
+                    "weight": 6
+                },
+                "shorterThan(exclusive)": {
+                    "value": "2h5m0s",
+                    "weight": 8
+                },
+                "minimumRottenTomatoesScore(inclusive)": {
+                    "value": 97,
+                    "weight": 12
+                }
+            }
+        },
+        {
+            "name": "Bilbo",
+            "preferences": {
+                "afterYear(inclusive)": {
+                    "value": 1938,
+                    "weight": 20
+                },
+                "beforeYear(exclusive)": {
+                    "value": 1994,
+                    "weight": 26
+                },
+                "shorterThan(exclusive)": {
+                    "value": "1h15m0s",
+                    "weight": 14
+                }
+            }
+        },
+        {
+            "name": "Sherlock",
+            "preferences": {
+                "beforeYear(exclusive)": {
+                    "value": 1945,
+                    "weight": 20
+                },
+                "maximumAgeRating(inclusive)": {
+                    "value": "PG",
+                    "weight": 15
+                },
+                "shorterThan(exclusive)": {
+                    "value": "1h25m0s",
+                    "weight": 9
+                },
+                "favoriteActors": {
+                    "value": [
+                        "Jack Nicholson"
+                    ],
+                    "weight": 24
+                }
+            }
+        },
+        {
+            "name": "Rocky",
+            "preferences": {
+                "afterYear(inclusive)": {
+                    "value": 1908,
+                    "weight": 16
+                },
+                "shorterThan(exclusive)": {
+                    "value": "2h20m0s",
+                    "weight": 28
+                },
+                "favoriteActors": {
+                    "value": [
+                        "Leonardo DiCaprio",
+                        "Jack Nicholson"
+                    ],
+                    "weight": 11
+                }
+            }
+        },
+        {
+            "name": "Peter",
+            "preferences": {
+                "beforeYear(exclusive)": {
+                    "value": 1943,
+                    "weight": 32
+                },
+                "favoritePlotElements": {
+                    "value": [
+                        "survival",
+                        "war",
+                        "escape"
+                    ],
+                    "weight": 18
+                },
+                "minimumRottenTomatoesScore(inclusive)": {
+                    "value": 90,
+                    "weight": 12
+                }
+            }
+        }
+    ]
+}
