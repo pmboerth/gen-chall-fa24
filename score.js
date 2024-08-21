@@ -1,3 +1,5 @@
+import { information} from "./index.js"
+
 // utility function to convert runtime to minutes (72h3m0.5s)
 function convertRuntimeToMinutes(runtime) {
   let minutes = 0;
@@ -160,3 +162,5 @@ function determineOptimalRanking(information) {
 
   return optimalRanking;
 }
+
+export { determineOptimalRanking};
