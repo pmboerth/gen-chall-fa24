@@ -1,13 +1,9 @@
-// import information object
-import { information } from "./index.js";
-
 // utility function to convert runtime in the form "72h3m0.5s" to minutes
 function convertRuntimeToMinutes(runtime) {
   const parts = runtime.match(/(\d+)h(\d+)m(\d+)s/);
   const hours = parseInt(parts[1]);
   const minutes = parseInt(parts[2]);
-  const seconds = parts[3] ? parseInt(parts[3]) : 0;
-  return hours * 60 + minutes + seconds / 60;
+  return hours * 60 + minutes;
 }
 
 
@@ -117,6 +113,7 @@ function determineOptimalRanking(information) {
   
   for (let movie of information.movies) {
     let movieScore = 0;
+
     for (let person of information.people) {
       movieScore += calculateMovieScore(movie, person.preferences);
     }
@@ -129,4 +126,4 @@ function determineOptimalRanking(information) {
   return ranking;
 }
 
-export { determineOptimalRanking, convertRuntimeToMinutes };
+export { determineOptimalRanking, convertRuntimeToMinutes, calculateMovieScore };

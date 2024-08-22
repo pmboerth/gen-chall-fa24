@@ -77,16 +77,18 @@ async function sendMovieList() {
 
 // main function
 async function main() {
-  // await register();
 
   // get the token
   await getToken();
+
   // get the prompt
   await getPrompt();
+
   // get movie data
   await getMovieData();
+
   // compute and send the optimal ranking to the Generate server
-  // sendMovieList();
+  sendMovieList();
 }
 
 // run the main function
