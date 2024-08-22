@@ -27,6 +27,7 @@ async function register() {
       email: "boerth.p@northeastern.edu",
     }),
   });
+  
   const data = await response.json();
   console.log(data);
 }
@@ -36,6 +37,7 @@ async function getToken() {
   const response = await fetch(
     apiURL + "token?email=boerth.p%40northeastern.edu"
   );
+  
   information.token = await response.text();
 }
 
@@ -44,6 +46,7 @@ async function getPrompt() {
   const response = await fetch(apiURL + information.token + "/prompt", {
     method: "GET",
   });
+  
   const data = await response.json();
   information.movies = data.movies;
   information.people = data.people;
@@ -59,6 +62,7 @@ async function getMovieData() {
         headers: { "Content-Type": "application/json" },
       }
     );
+    
     const movieInfo = await response.json();
     information.movies[i] = movieInfo;
   }
@@ -66,11 +70,13 @@ async function getMovieData() {
 
 // send optimal movie ranking back to server
 async function sendMovieList() {
+  const rankingToSend = determineOptimalRanking(information);
   const response = await fetch(apiURL + information.token + "/submit", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(determineOptimalRanking(information)),
+    body: JSON.stringify(rankingToSend),
   });
+  
   let score = await response.text();
   console.log(score);
 }

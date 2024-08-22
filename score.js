@@ -109,7 +109,7 @@ function calculateMovieScore(movie, preferences) {
 
 // function to determine final optimal ranking
 function determineOptimalRanking(information) {
-  let todo = [];
+  let baseRanking = [];
   
   for (let movie of information.movies) {
     let movieScore = 0;
@@ -117,13 +117,13 @@ function determineOptimalRanking(information) {
     for (let person of information.people) {
       movieScore += calculateMovieScore(movie, person.preferences);
     }
-    todo.push({"movieID": movie.imdbID, "score": movieScore})
+    baseRanking.push({"movieID": movie.imdbID, "score": movieScore})
   }
 
-  todo.sort((a, b) => b.score - a.score);
-  let ranking = todo.map((movie) => movie.movieID);
+  baseRanking.sort((a, b) => b.score - a.score);
+  let optimalRanking = baseRanking.map((movie) => movie.movieID);
 
-  return ranking;
+  return optimalRanking;
 }
 
 export { determineOptimalRanking, convertRuntimeToMinutes, calculateMovieScore };
