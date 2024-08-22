@@ -1,26 +1,15 @@
 // import information object
 import { information } from "./index.js";
 
-// utility function to convert runtime in the form (72h3m0.5s) to minutes
+// utility function to convert runtime in the form "72h3m0.5s" to minutes
 function convertRuntimeToMinutes(runtime) {
-  let minutes = 0;
-
-  // regular expression to match the runtime string
-  const hourMatch = runtime.match(/(\d+)h/);
-  const minuteMatch = runtime.match(/(\d+)m/);
-
-  // add hours to minutes if present
-  if (hourMatch) {
-    minutes += parseInt(hourMatch[1], 10) * 60;
-  }
-
-  // add remaining minutes if present
-  if (minuteMatch) {
-    minutes += parseInt(minuteMatch[1], 10);
-  }
-
-  return minutes;
+  const parts = runtime.match(/(\d+)h(\d+)m(\d+)s/);
+  const hours = parseInt(parts[1]);
+  const minutes = parseInt(parts[2]);
+  const seconds = parts[3] ? parseInt(parts[3]) : 0;
+  return hours * 60 + minutes + seconds / 60;
 }
+
 
 // utility function to extract Rotten Tomatoes score
 function getRottenTomatoesScore(ratings) {
@@ -58,7 +47,7 @@ function calculateMovieScore(movie, preferences) {
 
   // runtime preference
   if (preferences["shorterThan(exclusive)"]) {
-    const movieRuntime = convertRuntimeToMinutes(movie.Runtime);
+    const movieRuntime = movie.Runtime.replace(" min", "");
     const preferenceRuntime = convertRuntimeToMinutes(
       preferences["shorterThan(exclusive)"].value
     );
@@ -122,49 +111,22 @@ function calculateMovieScore(movie, preferences) {
   return score;
 }
 
-// function that finds the optimal ranking of movies for each person
-function rankMoviesForPerson(movies, person) {
-  const rankedMovies = information.movies.map((movie) => ({
-    title: movie.Title,
-    score: calculateMovieScore(movie, person.preferences),
-  }));
-
-  rankedMovies.sort((a, b) => b.score - a.score);
-  return rankedMovies;
-}
-
 // function to determine final optimal ranking
 function determineOptimalRanking(information) {
-  const individualRankings = information.people.map((person) => ({
-    name: person.name,
-    rankedMovies: rankMoviesForPerson(information.movies, person),
-  }));
+  let todo = [];
+  
+  for (let movie of information.movies) {
+    let movieScore = 0;
+    for (let person of information.people) {
+      movieScore += calculateMovieScore(movie, person.preferences);
+    }
+    todo.push({"movieID": movie.imdbID, "score": movieScore})
+  }
 
-  // initialize array to store imdbID for each movie and corresponding score
-  const movieScores = {};
+  todo.sort((a, b) => b.score - a.score);
+  let ranking = todo.map((movie) => movie.movieID);
 
-  // calculate scores for each movie based on individual rankings
-  individualRankings.forEach((ranking) => {
-    ranking.rankedMovies.forEach((movie, index) => {
-      const movieID = information.movies.find(
-        (m) => m.Title === movie.title
-      ).imdbID;
-      // if the movie does not have a score, initialize it to 0
-      if (!movieScores[movieID]) {
-        movieScores[movieID] = 0;
-      }
-      // add points to a particular movie based on where it is in the persons ranking
-      movieScores[movieID] += information.movies.length - index;
-    });
-  });
-
-  // create the optimal ranking as an array of IMDb IDs, sorted by score
-  const optimalRanking = Object.keys(movieScores)
-    .map((imdbID) => ({ imdbID, score: movieScores[imdbID] }))
-    .sort((a, b) => b.score - a.score)
-    .map((movie) => movie.imdbID);
-
-  return optimalRanking;
+  return ranking;
 }
 
-export { determineOptimalRanking };
+export { determineOptimalRanking, convertRuntimeToMinutes };

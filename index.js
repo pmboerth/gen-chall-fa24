@@ -86,7 +86,7 @@ async function main() {
   // get movie data
   await getMovieData();
   // compute and send the optimal ranking to the Generate server
-  sendMovieList();
+  // sendMovieList();
 }
 
 // run the main function
